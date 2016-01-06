@@ -1,8 +1,9 @@
 
-console.log("Connecting to https://luvit.io through proxy...");
-connect("tls", "luvit.io", "443", function (write) {
+console.log("Connecting to git repo through proxy...");
+connect("tls", "github.com", "443", function (write) {
   console.log("Connected to remote. Sending HTTP request...");
-  write("GET / HTTP/1.1\r\nHost: luvit.io\r\n\r\n");
+  var path = "/creationix/conquest.git/info/refs?service=git-upload-pack";
+  write("GET " + path + " HTTP/1.1\r\nHost: github.com\r\n\r\n");
 }, function (buffer) {
   console.log(buffer);
   console.log(toString(buffer));
